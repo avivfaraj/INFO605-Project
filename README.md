@@ -1,2 +1,2 @@
 # INFO605-Project
-Online retail management system 0
+Online retail management system
