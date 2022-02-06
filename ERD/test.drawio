@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-02-03T01:02:59.350Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 OPR/82.0.4227.58" etag="N4sH7Z22a_MSlaOkIDpe" version="16.4.11" type="github">
+<mxfile host="app.diagrams.net" modified="2022-02-06T20:31:44.490Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 OPR/82.0.4227.58" etag="Uxd6eSDx9P9ouoA785Zz" version="16.5.3" type="github">
   <diagram id="nb9kIYQozij9vFDSIQST" name="ERD">
-    <mxGraphModel dx="1155" dy="2426" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="876" dy="2237" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -154,7 +154,7 @@
             <mxPoint x="764" y="-220" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="eeljkvIZESEK8SBCMJx8-150" value="{Optional, Or}" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=16;" parent="eeljkvIZESEK8SBCMJx8-147" vertex="1" connectable="0">
+        <mxCell id="eeljkvIZESEK8SBCMJx8-150" value="{Mandatory, Or}" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=16;" parent="eeljkvIZESEK8SBCMJx8-147" vertex="1" connectable="0">
           <mxGeometry x="-0.4222" y="-2" relative="1" as="geometry">
             <mxPoint x="-10" y="-12" as="offset" />
           </mxGeometry>
