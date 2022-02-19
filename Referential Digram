@@ -1,14 +1,17 @@
-<mxfile host="app.diagrams.net" modified="2022-02-19T16:38:28.705Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="CVkGpluiY0KjP2mTMW77" version="16.5.6" type="github">
+<mxfile host="app.diagrams.net" modified="2022-02-19T16:41:02.424Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="_V_JwNa_SogGtR07WXrx" version="16.5.6" type="github">
   <diagram id="XVf6cMPkmsaE1dFnUmuw" name="Page-1">
     <mxGraphModel dx="1038" dy="524" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="RwjBt87DDW_TiBrwf7uw-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="130" y="130" width="120" height="60" as="geometry" />
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-2" value="Customer" style="html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="RwjBt87DDW_TiBrwf7uw-2" value="Object" style="html=1;" vertex="1" parent="1">
-          <mxGeometry x="140" y="280" width="110" height="50" as="geometry" />
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-3" value="Customer" style="html=1;" vertex="1" parent="1">
+          <mxGeometry x="189" y="80" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-5" value="Object" style="html=1;" vertex="1" parent="1">
+          <mxGeometry x="299" y="80" width="110" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
