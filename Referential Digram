@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-02-19T16:41:02.424Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="_V_JwNa_SogGtR07WXrx" version="16.5.6" type="github">
+<mxfile host="app.diagrams.net" modified="2022-02-19T16:52:21.393Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="rmQ2AXnytSBHG_sQmRI-" version="16.5.6" type="github">
   <diagram id="XVf6cMPkmsaE1dFnUmuw" name="Page-1">
     <mxGraphModel dx="1038" dy="524" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
@@ -7,11 +7,77 @@
         <mxCell id="RwjBt87DDW_TiBrwf7uw-2" value="Customer" style="html=1;" vertex="1" parent="1">
           <mxGeometry x="80" y="80" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="RwjBt87DDW_TiBrwf7uw-3" value="Customer" style="html=1;" vertex="1" parent="1">
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-3" value="&lt;u&gt;customerID&lt;/u&gt;" style="html=1;" vertex="1" parent="1">
           <mxGeometry x="189" y="80" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="RwjBt87DDW_TiBrwf7uw-5" value="Object" style="html=1;" vertex="1" parent="1">
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-5" value="&lt;font style=&quot;font-size: 11px&quot;&gt;customerFirstName&lt;/font&gt;" style="html=1;" vertex="1" parent="1">
           <mxGeometry x="299" y="80" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-6" value="&lt;font style=&quot;font-size: 10px&quot;&gt;customerMiddleName&lt;/font&gt;" style="html=1;" vertex="1" parent="1">
+          <mxGeometry x="409" y="80" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-7" value="customerLastName" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="519" y="80" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-8" value="customerPhone" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="629" y="80" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-9" value="customerEmail" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="739" y="80" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-10" value="street" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="849" y="80" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-12" value="city" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="959" y="80" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-14" value="state" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1069" y="80" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-15" value="zip" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1179" y="80" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-16" value="Cart" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="79" y="200" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-17" value="&lt;u&gt;cartID&lt;/u&gt;" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="189" y="200" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-18" value="cartSubtotal" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="299" y="200" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-19" value="cartTax" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="409" y="200" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-20" value="Payment" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="80" y="321" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-21" value="&lt;u&gt;paymentID&lt;/u&gt;" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="190" y="321" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-22" value="paymentType" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="299" y="321" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-23" value="paymentDigits" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="409" y="321" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-24" value="paymentCompany" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="519" y="321" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-25" value="Object" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="79" y="440" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-26" value="Object" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="189" y="440" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-27" value="Object" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="299" y="440" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-28" value="Object" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="409" y="440" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RwjBt87DDW_TiBrwf7uw-29" value="Object" style="html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="519" y="440" width="110" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
