@@ -114,3 +114,58 @@ CONSTRAINT lineItem_fk3 FOREIGN KEY (productID) REFERENCES Product(productID));
    **************************************
 */
 
+-- DROP TABLE Shoes cascade CONSTRAINTS;  
+CREATE TABLE Shoes(
+shoesID      NUMBER(10)  NOT NULL, 
+usSize       NUMBER(2)   NOT NULL, 
+uSize        NUMBER(2)   NOT NULL, 
+CONSTRAINT shoes_fk FOREIGN KEY (shoesID) REFERENCES Product(productID),
+CONSTRAINT shoes_pk PRIMARY KEY (shoesID)); 
+
+
+
+-- DROP TABLE Top cascade CONSTRAINTS;  
+CREATE TABLE Top(
+topID       NUMBER(10)      NOT NULL,  
+topFit      VARCHAR2(7)     NOT NULL 
+CHECK(topFit IN ('Regular', 'Tall')),  
+topSize     VARCHAR2(10)    NOT NULL 
+CHECK(topSize IN ('S', 'M', 'L', 'XL', 'XXL', '3XL')),  
+topType     VARCHAR2(11)    NOT NULL 
+CHECK(topType IN ('T-shirt', 'Long Sleeve', 'Polo Shirt', 'Sweatshirt', 'Sleeveless')),  
+CONSTRAINT top_fk FOREIGN KEY (topID) REFERENCES Product(productID), 
+CONSTRAINT top_pk PRIMARY KEY (topID)); 
+
+
+-- DROP TABLE Bottom cascade CONSTRAINTS; 
+CREATE TABLE Bottom(
+bottomID        NUMBER(10)     NOT NULL, 
+bottomFit       VARCHAR2(7)    NOT NULL 
+CHECK(bottomFit  IN ('Regular', 'Tall')), 
+bottomSize   VARCHAR2(10)      NOT NULL 
+CHECK(bottomSize IN ('S', 'M', 'L', 'XL', 'XXL', '3XL')), 
+bottomType      VARCHAR2(11)   NOT NULL 
+CHECK(bottomType IN ('Sweatpants', 'Leggins', 'Pants', 'Shorts')), 
+CONSTRAINT bottom_fk FOREIGN KEY (bottomID) REFERENCES Product(productID), 
+CONSTRAINT bottom_pk PRIMARY KEY (bottomID));
+
+
+
+/* **************************************
+   ************** Grants ****************
+   **************************************
+*/
+GRANT SELECT ON Customer to PUBLIC; 
+GRANT SELECT ON Cart to PUBLIC; 
+GRANT SELECT ON Orders to PUBLIC; 
+GRANT SELECT ON Payment to PUBLIC; 
+GRANT SELECT ON Shipment to PUBLIC; 
+GRANT SELECT ON LineItem to PUBLIC; 
+-- GRANT SELECT ON ReturnedItems to PUBLIC; 
+-- GRANT SELECT ON CartLineItem to PUBLIC; 
+GRANT SELECT ON Product to PUBLIC; 
+GRANT SELECT ON Shoes to PUBLIC; 
+GRANT SELECT ON Top to PUBLIC; 
+GRANT SELECT ON Bottom to PUBLIC; 
+
+COMMIT;
