@@ -3,6 +3,7 @@
    **************************************
 */
 
+-- Changed EMAIL from VARCHAR2(20) to VARCHAR2(60)
 -- DROP TABLE Customer CASCADE CONSTRAINTS; 
 CREATE TABLE Customer (
 customerID             NUMBER(10)    NOT NULL,  
@@ -10,20 +11,25 @@ customerFirstName      VARCHAR2(20)  NOT NULL,
 customerMiddleName     VARCHAR2(20), 
 customerLastName       VARCHAR2(20)  NOT NULL, 
 customerPhone          NUMBER(10)    UNIQUE, 
-customerEmail          VARCHAR2(20)  NOT NULL UNIQUE, 
+customerEmail          VARCHAR2(60)  NOT NULL UNIQUE, 
 street                 VARCHAR2(20)  NOT NULL, 
 city                   VARCHAR2(20)  NOT NULL, 
 state                  CHAR(2)       NOT NULL, 
 zip                    CHAR(5)       NOT NULL, 
 CONSTRAINT customer_pk PRIMARY KEY (customerID));
 
-
--- DROP TABLE Cart CASCADE CONSTRAINTS; 
+-- Added line to automatically generate orderID
+-- Removed NOT NULL from orderID
+-- Added customerID
+DROP TABLE Cart CASCADE CONSTRAINTS; 
 CREATE TABLE Cart (
-cartID                 NUMBER(10)    NOT NULL,  
+cartID                 NUMBER(10)
+GENERATED ALWAYS AS IDENTITY START WITH 1 INCREMENT BY 1,  
 cartSubtotal           NUMBER(4,2), 
-cartTax                NUMBER(4,2),  
-CONSTRAINT cart_pk PRIMARY KEY (cartID));
+cartTax                NUMBER(4,2),
+customerID             NUMBER(10) NOT NULL, 
+CONSTRAINT cart_pk PRIMARY KEY (cartID),
+CONSTRAINT cart_fk FOREIGN KEY (customerID) REFERENCES Customer(customerID));
 
 
 -- DROP TABLE Payment CASCADE CONSTRAINTS; 
@@ -33,7 +39,7 @@ paymentType             VARCHAR2(6)  NOT NULL
 CHECK (paymentType in ('Debit', 'Credit')), 
 paymentDigits           NUMBER(4)    NOT NULL, 
 paymentCompany          VARCHAR2(10) NOT NULL, 
-CHECK (paymentCompany in ('Visa','AMEX', 'Mastercard')), 
+CHECK (paymentCompany in ('Visa','AMEX', 'Mastercard')),
 CONSTRAINT payment_pk PRIMARY KEY (paymentID));
 
 
@@ -51,18 +57,25 @@ productCollection        VARCHAR2(15),
 productCategory          VARCHAR2(20) NOT NULL, 
 CONSTRAINT product_pk PRIMARY KEY (productID));
 
+-- Added paymentID
+-- Changed prices to NUMBER(6,2)
+-- Added line to automatically generate orderID
+-- Removed NOT NULL from orderID
 -- Changed Order TABLEname to Orders since Order is a saved word in SQL
--- DROP TABLE Orders CASCADE CONSTRAINTS; 
+DROP TABLE Orders CASCADE CONSTRAINTS; 
 CREATE TABLE Orders(
-orderID                  NUMBER (10) NOT NULL,  
-orderSubtotal            NUMBER(4,2), 
-orderTax                 NUMBER(4,2), 
+orderID                  NUMBER
+GENERATED ALWAYS AS IDENTITY START WITH 1 INCREMENT BY 1,  
+orderSubtotal            NUMBER(6,2), 
+orderTax                 NUMBER(6,2), 
 orderDate                DATE, 
 orderTime                DATE, 
-shippingCost             NUMBER(4,2), 
-customerID               NUMBER(10)  NOT NULL, 
+shippingCost             NUMBER(6,2), 
+customerID               NUMBER(10)  NOT NULL,
+paymentID                NUMBER(6) NOT NULL,
 CONSTRAINT orders_pk PRIMARY KEY (orderID), 
-CONSTRAINT orders_fk FOREIGN KEY (customerID) REFERENCES Customer (customerID));
+CONSTRAINT orders_fk1 FOREIGN KEY (customerID) REFERENCES Customer (customerID),
+CONSTRAINT orders_fk2 FOREIGN KEY (paymentID) REFERENCES Payment(paymentID));
 
 
 /* **************************************
