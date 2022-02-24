@@ -128,16 +128,42 @@ CONSTRAINT lineItem_fk3 FOREIGN KEY (productID) REFERENCES Product(productID));
 
 
 
+-- DROP TABLE Returns CASCADE CONSTRAINTS; 
+CREATE TABLE Returns(
+orderID         NUMBER(10)    NOT NULL, 
+returnID        NUMBER(10)
+GENERATED ALWAYS AS IDENTITY START WITH 1 INCREMENT BY 1, 
+returnDate      VARCHAR2(20)    NOT NULL,
+CONSTRAINT returns_pk PRIMARY KEY (orderID, returnID), 
+CONSTRAINT returns_fk FOREIGN KEY (orderID) REFERENCES Orders (orderID));
+
+-- DROP TABLE ReturnsItem CASCADE CONSTRAINTS; 
+CREATE TABLE ReturnsItem(
+productID         NUMBER(10)    NOT NULL,
+orderID           NUMBER(10)    NOT NULL,
+returnID          NUMBER(10)    NOT NULL,
+quantity          NUMBER(2)     NOT NULL,
+CONSTRAINT returnsitem_pk PRIMARY KEY (productID, orderID,  returnID), 
+CONSTRAINT returnsitem_fk1 FOREIGN KEY (productID) REFERENCES Product(productID),
+CONSTRAINT returnsitem_fk2 FOREIGN KEY (orderID, returnID) REFERENCES Returns(orderID, returnID));
+
+
+
+
+
+
+
 /* **************************************
    *********** Sub-classes **************
    **************************************
 */
 
+-- Number(3,1) for size
 DROP TABLE Shoes cascade CONSTRAINTS;  
 CREATE TABLE Shoes(
 shoesID      NUMBER(10)  NOT NULL, 
-usSize       NUMBER(2)   NOT NULL, 
-uSize        NUMBER(2)   NOT NULL, 
+usSize       NUMBER(3,1)   NOT NULL, 
+euSize       NUMBER(3,1)   NOT NULL, 
 CONSTRAINT shoes_fk FOREIGN KEY (shoesID) REFERENCES Product(productID),
 CONSTRAINT shoes_pk PRIMARY KEY (shoesID)); 
 
@@ -167,6 +193,8 @@ bottomType      VARCHAR2(11)   NOT NULL
 CHECK(bottomType IN ('Sweatpants', 'Leggings', 'Pants', 'Shorts')), 
 CONSTRAINT bottom_fk FOREIGN KEY (bottomID) REFERENCES Product(productID), 
 CONSTRAINT bottom_pk PRIMARY KEY (bottomID));
+
+
 
 
 
