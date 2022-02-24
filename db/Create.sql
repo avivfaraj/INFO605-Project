@@ -4,14 +4,16 @@
 */
 
 -- Changed EMAIL from VARCHAR2(20) to VARCHAR2(60)
+-- Changed attributes name
 -- DROP TABLE Customer CASCADE CONSTRAINTS; 
 CREATE TABLE Customer (
-customerID             NUMBER(10)    NOT NULL,  
-customerFirstName      VARCHAR2(20)  NOT NULL, 
-customerMiddleName     VARCHAR2(20), 
-customerLastName       VARCHAR2(20)  NOT NULL, 
-customerPhone          NUMBER(10)    UNIQUE, 
-customerEmail          VARCHAR2(60)  NOT NULL UNIQUE, 
+customerID             NUMBER(10)
+GENERATED ALWAYS AS IDENTITY START WITH 1 INCREMENT BY 1,  
+fName      VARCHAR2(20)  NOT NULL, 
+mName     VARCHAR2(20), 
+lName       VARCHAR2(20)  NOT NULL, 
+phone          NUMBER(10)    UNIQUE, 
+email          VARCHAR2(60)  NOT NULL UNIQUE, 
 street                 VARCHAR2(20)  NOT NULL, 
 city                   VARCHAR2(20)  NOT NULL, 
 state                  CHAR(2)       NOT NULL, 
@@ -32,20 +34,22 @@ CONSTRAINT cart_pk PRIMARY KEY (cartID),
 CONSTRAINT cart_fk FOREIGN KEY (customerID) REFERENCES Customer(customerID));
 
 
+-- Changed paymentCompany to (16)
 -- DROP TABLE Payment CASCADE CONSTRAINTS; 
 CREATE TABLE Payment(
 paymentID               NUMBER(6)    NOT NULL, 
 paymentType             VARCHAR2(6)  NOT NULL 
 CHECK (paymentType in ('Debit', 'Credit')), 
 paymentDigits           NUMBER(4)    NOT NULL, 
-paymentCompany          VARCHAR2(10) NOT NULL, 
-CHECK (paymentCompany in ('Visa','AMEX', 'Mastercard')),
+paymentCompany          VARCHAR2(16) NOT NULL, 
+CHECK (paymentCompany in ('Visa','AMEX', 'Mastercard', 'Bank of America', 'Capital One')),
 CONSTRAINT payment_pk PRIMARY KEY (paymentID));
 
 
 -- DROP TABLE Product CASCADE CONSTRAINTS; 
 CREATE TABLE Product(
-productID                NUMBER(10)   NOT NULL, 
+productID                NUMBER(10)
+GENERATED ALWAYS AS IDENTITY START WITH 1 INCREMENT BY 1, 
 productName              VARCHAR2(15) NOT NULL, 
 productDescription       VARCHAR2(15), 
 productQuantity          NUMBER(3)    NOT NULL, 
