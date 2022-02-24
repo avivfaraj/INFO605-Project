@@ -128,7 +128,7 @@ CONSTRAINT lineItem_fk3 FOREIGN KEY (productID) REFERENCES Product(productID));
 
 
 
--- DROP TABLE Returns CASCADE CONSTRAINTS; 
+DROP TABLE Returns CASCADE CONSTRAINTS; 
 CREATE TABLE Returns(
 orderID         NUMBER(10)    NOT NULL, 
 returnID        NUMBER(10)
@@ -137,7 +137,7 @@ returnDate      VARCHAR2(20)    NOT NULL,
 CONSTRAINT returns_pk PRIMARY KEY (orderID, returnID), 
 CONSTRAINT returns_fk FOREIGN KEY (orderID) REFERENCES Orders (orderID));
 
--- DROP TABLE ReturnsItem CASCADE CONSTRAINTS; 
+DROP TABLE ReturnsItem CASCADE CONSTRAINTS; 
 CREATE TABLE ReturnsItem(
 productID         NUMBER(10)    NOT NULL,
 orderID           NUMBER(10)    NOT NULL,
