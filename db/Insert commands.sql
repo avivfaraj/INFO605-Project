@@ -37,55 +37,6 @@ INSERT INTO Customer (fName, mName, lName, phone, email, street, city, state, zi
 -- Sanity Check
 SELECT * FROM Customer;
 
-/* **************************************
-   ***************** Cart ***************
-   **************************************
-*/
-
--- Probably will change the way we insert Subtotal!
-
--- *************** Cart #1 ****************
--- Creating Cart with 0,5 (subtotal and tax)
-INSERT INTO Cart(cartSubtotal, cartTax, customerID) VALUES(0,5,2);
-
--- Inserting items to this cart
-INSERT INTO cartLineItem VALUES(1, 1, 2);
-INSERT INTO cartLineItem VALUES(1, 6, 3);
-
--- Updating cart's subtotal according to item's prices and quantity
-UPDATE Cart
-SET cartSubtotal = (SELECT SUM(cli.quantity * p.productPrice)
-                FROM cartLineItem cli
-                INNER JOIN Product p
-                ON cli.productID = p.productID
-                WHERE cli.cartID = 1)
-WHERE cartID = 1;
-                
-
-
--- *************** Cart #2 ****************
--- Creating Cart with 0,5 (subtotal and tax)
-INSERT INTO Cart(cartSubtotal, cartTax, customerID) VALUES(0,5,2);
-
--- Inserting items to this cart
-INSERT INTO cartLineItem VALUES(2, 5, 2);
-INSERT INTO cartLineItem VALUES(2, 2, 1);
-
--- Updating cart's subtotal according to item's prices and quantity
-UPDATE Cart
-SET cartSubtotal = (SELECT SUM(cli.quantity * p.productPrice)
-                FROM cartLineItem cli
-                INNER JOIN Product p
-                ON cli.productID = p.productID
-                WHERE cli.cartID = 2)
-WHERE cartID = 2;
-
-
--- The same process we will use for orders
-
--- Sanity Check
-SELECT * FROM CART;
-
 
 /* **************************************
    *************** Payment **************
@@ -118,7 +69,7 @@ INSERT ALL
 SELECT * FROM DUAL;
 
 -- Sanity Check
-SELECT * FROM Payment
+SELECT * FROM Payment;
 
 
 /* **************************************
@@ -184,10 +135,61 @@ INSERT INTO Top VALUES((SELECT MAX(productID) FROM Product),'Tall','M', 'Long Sl
 
 
 -- Sanity Check
-SELECT * FROM Product;
-SELECT * FROM Top;
-SELECT * FROM Bottom;
-SELECT * FROM Shoes;
+--SELECT * FROM Product;
+--SELECT * FROM Top;
+--SELECT * FROM Bottom;
+--SELECT * FROM Shoes;
+
+
+
+/* **************************************
+   ***************** Cart ***************
+   **************************************
+*/
+
+-- Probably will change the way we insert Subtotal!
+
+-- *************** Cart #1 ****************
+-- Creating Cart with 0,5 (subtotal and tax)
+INSERT INTO Cart(cartSubtotal, cartTax, customerID) VALUES(0,5,2);
+
+-- Inserting items to this cart
+INSERT INTO cartLineItem VALUES(1, 1, 2);
+INSERT INTO cartLineItem VALUES(1, 6, 3);
+
+-- Updating cart's subtotal according to item's prices and quantity
+UPDATE Cart
+SET cartSubtotal = (SELECT SUM(cli.quantity * p.productPrice)
+                FROM cartLineItem cli
+                INNER JOIN Product p
+                ON cli.productID = p.productID
+                WHERE cli.cartID = 1)
+WHERE cartID = 1;
+                
+
+
+-- *************** Cart #2 ****************
+-- Creating Cart with 0,5 (subtotal and tax)
+INSERT INTO Cart(cartSubtotal, cartTax, customerID) VALUES(0,5,2);
+
+-- Inserting items to this cart
+INSERT INTO cartLineItem VALUES(2, 5, 2);
+INSERT INTO cartLineItem VALUES(2, 2, 1);
+
+-- Updating cart's subtotal according to item's prices and quantity
+UPDATE Cart
+SET cartSubtotal = (SELECT SUM(cli.quantity * p.productPrice)
+                FROM cartLineItem cli
+                INNER JOIN Product p
+                ON cli.productID = p.productID
+                WHERE cli.cartID = 2)
+WHERE cartID = 2;
+
+
+-- The same process we will use for orders
+
+-- Sanity Check
+SELECT * FROM Cart;
 
 
 
