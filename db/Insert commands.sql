@@ -181,10 +181,9 @@ INSERT INTO cartLineItem VALUES(2, 2, 1);
 -- Updating cart's subtotal according to item's prices and quantity
 UPDATE Cart
 SET cartSubtotal = (SELECT SUM(cli.quantity * p.productPrice)
-                FROM cartLineItem cli
-                INNER JOIN Product p
-                ON cli.productID = p.productID
-                WHERE cli.cartID = 2)
+                FROM cartLineItem cli, Product p
+                WHERE cli.productID = p.productID AND cli.cartID = 2)
+                
 WHERE cartID = 2;
 
 
@@ -193,4 +192,3 @@ WHERE cartID = 2;
 -- Sanity Check
 SELECT * FROM PRODUCT WHERE productID IN (5,2);
 SELECT * FROM cart;
-
