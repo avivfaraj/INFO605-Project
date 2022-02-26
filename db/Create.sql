@@ -20,6 +20,7 @@ state                  CHAR(2)       NOT NULL,
 zip                    CHAR(5)       NOT NULL, 
 CONSTRAINT customer_pk PRIMARY KEY (customerID));
 
+-- Changed costumerID to unique
 -- Prices changed to (6,2)
 -- Added line to automatically generate orderID
 -- Removed NOT NULL from orderID
@@ -30,7 +31,7 @@ cartID                 NUMBER(10)
 GENERATED ALWAYS AS IDENTITY START WITH 1 INCREMENT BY 1,  
 cartSubtotal           NUMBER(6,2), 
 cartTax                NUMBER(6,2),
-customerID             NUMBER(10) NOT NULL, 
+customerID             NUMBER(10) NOT NULL UNIQUE, 
 CONSTRAINT cart_pk PRIMARY KEY (cartID),
 CONSTRAINT cart_fk FOREIGN KEY (customerID) REFERENCES Customer(customerID));
 
@@ -63,6 +64,8 @@ productCollection        VARCHAR2(30),
 productCategory          VARCHAR2(30) NOT NULL, 
 CONSTRAINT product_pk PRIMARY KEY (productID));
 
+
+-- Removed orderTime & changed orderDate to orderTimestamp
 -- Added paymentID
 -- Changed prices to NUMBER(6,2)
 -- Added line to automatically generate orderID
@@ -73,10 +76,9 @@ CREATE TABLE Orders(
 orderID                  NUMBER
 GENERATED ALWAYS AS IDENTITY START WITH 1 INCREMENT BY 1,  
 orderSubtotal            NUMBER(6,2), 
-orderTax                 NUMBER(6,2), 
-orderDate                DATE, 
-orderTime                DATE, 
-shippingCost             NUMBER(6,2), 
+orderTax                 NUMBER(6,2),
+shippingCost             NUMBER(6,2),
+orderTimestamp           DATE,  
 customerID               NUMBER(10)  NOT NULL,
 paymentID                NUMBER(6) NOT NULL,
 CONSTRAINT orders_pk PRIMARY KEY (orderID), 
@@ -106,25 +108,25 @@ CONSTRAINT shipmemt_fk FOREIGN KEY (orderID) REFERENCES Orders (orderID));
 DROP TABLE cartLineItem CASCADE CONSTRAINTS; 
 CREATE TABLE cartLineItem(
 cartID          NUMBER(10) NOT NULL, 
-productID       NUMBER(10) NOT NULL, 
+productID       NUMBER(10) NOT NULL,
 quantity        NUMBER(1), 
 CONSTRAINT cartLineItem_pk PRIMARY KEY (cartID, productID), 
 CONSTRAINT cartLineItem_fk1 FOREIGN KEY (cartID) REFERENCES Cart(cartID), 
 CONSTRAINT cartLineItem_fk2 FOREIGN KEY (productID) REFERENCES Product(productID));
 
+-- Replaced unitPrice with discount
+-- Deleted Foreign KEY shimpentID
 -- Changed lineNum to line# since lineNum is a saved word in SQL
 DROP TABLE LineItem CASCADE CONSTRAINTS; 
 CREATE TABLE LineItem (
 line#          NUMBER(2)  NOT NULL, 
 orderID         NUMBER(10) NOT NULL, 
-quantity        NUMBER(15), 
-unitPrice       NUMBER(10), 
-trackingNo      VARCHAR2(15) NOT NULL, 
+quantity        NUMBER(15),
+discount        NUMBER(6,2) NOT NULL,
 productID       NUMBER(10)  NOT NULL, 
 CONSTRAINT lineItem_pk PRIMARY KEY (line#, orderID), 
---CONSTRAINT lineItem_fk1 FOREIGN KEY (orderID) REFERENCES Orders(orderID), 
-CONSTRAINT lineItem_fk2 FOREIGN KEY (trackingNo, orderID) REFERENCES Shipment(trackingNo,orderID), 
-CONSTRAINT lineItem_fk3 FOREIGN KEY (productID) REFERENCES Product(productID));
+CONSTRAINT lineItem_fk1 FOREIGN KEY (orderID) REFERENCES Orders(orderID), 
+CONSTRAINT lineItem_fk2 FOREIGN KEY (productID) REFERENCES Product(productID));
 
 
 
