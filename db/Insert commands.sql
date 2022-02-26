@@ -1,9 +1,8 @@
-
+alter session set nls_date_format='MM/DD/YYYY HH24:MI';
 /* **************************************
    *************** Customer *************
    **************************************
 */
-
 INSERT INTO Customer (fName, mName, lName, phone, email, street, city, state, zip) 
     VALUES('Andrew','Tesla','McDonald',7575852822,'andrewTM@gmail.com','222 Wayne St.','Philadelphia','PA','19033');
     
@@ -150,28 +149,23 @@ INSERT INTO Top VALUES((SELECT MAX(productID) FROM Product),'Tall','M', 'Long Sl
 -- Probably will change the way we insert Subtotal!
 
 -- *************** Cart #1 ****************
--- Creating Cart with 0,5 (subtotal and tax)
-INSERT INTO Cart(cartSubtotal, cartTax, customerID) VALUES(0,5,2);
+-- Creating Cart with 0,0 (subtotal and tax)
+INSERT INTO Cart(cartSubtotal, cartTax, customerID) VALUES(0,0,1);
 
 -- Inserting items to this cart
 INSERT INTO cartLineItem VALUES(1, 1, 2);
 INSERT INTO cartLineItem VALUES(1, 6, 3);
 
--- Updating cart's subtotal according to item's prices and quantity
+-- Updating cart's subtotal and tax according to item's prices and quantity
 UPDATE Cart
-SET cartSubtotal = (SELECT SUM(cli.quantity * p.productPrice)
+SET (cartSubtotal, cartTax) = (SELECT SUM(cli.quantity * p.productPrice), SUM(cli.quantity * p.productPrice)*0.05
                     FROM cartLineItem cli, Product p
                     WHERE cli.productID = p.productID AND cli.cartID = 1)
 WHERE cartID = 1;
                 
-/*(SELECT SUM(cli.quantity * p.productPrice)
-                FROM cartLineItem cli
-                INNER JOIN Product p
-                ON cli.productID = p.productID
-                WHERE cli.cartID = 1)*/
 
 -- *************** Cart #2 ****************
--- Creating Cart with 0,5 (subtotal and tax)
+-- Creating Cart with 0,0 (subtotal and tax)
 INSERT INTO Cart(cartSubtotal, cartTax, customerID) VALUES(0,5,2);
 
 -- Inserting items to this cart
@@ -180,15 +174,85 @@ INSERT INTO cartLineItem VALUES(2, 2, 1);
 
 -- Updating cart's subtotal according to item's prices and quantity
 UPDATE Cart
-SET cartSubtotal = (SELECT SUM(cli.quantity * p.productPrice)
-                FROM cartLineItem cli, Product p
-                WHERE cli.productID = p.productID AND cli.cartID = 2)
-                
+SET (cartSubtotal, cartTax) = (SELECT SUM(cli.quantity * p.productPrice), SUM(cli.quantity * p.productPrice)*0.05
+                    FROM cartLineItem cli, Product p
+                    WHERE cli.productID = p.productID AND cli.cartID = 2)
 WHERE cartID = 2;
+
 
 
 -- The same process we will use for orders
 
 -- Sanity Check
-SELECT * FROM PRODUCT WHERE productID IN (5,2);
+COLUMN CART.CARTSUBTOTAL FORMAT $9999.99
 SELECT * FROM cart;
+SELECT * FROM cartLineItem;
+
+
+/* **************************************
+   **************** Orders **************
+   **************************************
+*/
+
+/**** ORDER #1 ******/
+-- Creating temporary order with 0 
+INSERT INTO Orders(orderSubtotal, orderTax,shippingCost, orderTimestamp, customerID, paymentID) 
+            VALUES(0,0,5,TO_DATE( '12/04/2019 10:45', 'MM/DD/YYYY HH24:MI'), 1, 118214);
+
+-- Inserting to LineItem
+INSERT INTO lineItem VALUES(1, 1, 2, 0,2);
+
+UPDATE Orders
+SET (orderSubtotal, orderTax) = (SELECT SUM(li.quantity * p.productPrice), SUM(li.quantity * p.productPrice)*0.05
+                    FROM lineitem li, Product p
+                    WHERE li.productID = p.productID AND li.orderID = 1)
+WHERE orderID = 1;
+
+
+/**** ORDER #2 ******/
+-- Creating temporary order with 0 
+INSERT INTO Orders(orderSubtotal, orderTax,shippingCost,orderTimestamp, customerID, paymentID) 
+            VALUES(0,0,5,TO_DATE( '12/04/2019 13:45', 'MM/DD/YYYY HH24:MI'), 1, 118214);
+
+-- Inserting to LineItem
+INSERT INTO lineItem VALUES(1, 2, 1, 0,5);
+INSERT INTO lineItem VALUES(2, 2, 1, 0,8);
+
+
+UPDATE Orders
+SET (orderSubtotal, orderTax) = (SELECT SUM(li.quantity * p.productPrice), SUM(li.quantity * p.productPrice)*0.05
+                    FROM lineitem li, Product p
+                    WHERE li.productID = p.productID AND li.orderID = 2)
+WHERE orderID = 2;
+
+
+
+/**** ORDER #3 ******/
+-- Creating temporary order with 0 
+INSERT INTO Orders(orderSubtotal, orderTax,shippingCost,orderTimestamp, customerID, paymentID) 
+            VALUES(0,0,5,TO_DATE( '01/01/2020 13:00', 'MM/DD/YYYY HH24:MI'), 2, 218751);
+
+-- Inserting to LineItem
+INSERT INTO lineItem VALUES(1, 3, 1, 0,2);
+INSERT INTO lineItem VALUES(2, 3, 3, 0,3);
+
+
+UPDATE Orders
+SET (orderSubtotal, orderTax) = (SELECT SUM(li.quantity * p.productPrice), SUM(li.quantity * p.productPrice)*0.05
+                    FROM lineitem li, Product p
+                    WHERE li.productID = p.productID AND li.orderID = 3)
+WHERE orderID = 3;
+
+-- Sanity Check
+SELECT * FROM orders;
+SELECT * FROM lineItem;
+
+
+
+/* **************************************
+   ************** Shipment **************
+   **************************************
+*/
+INSERT INTO Shipment VALUES('A7FV4NS0', 1, '222 Wayne St.', 'Philadelphia', 'PA', '19033');
+INSERT INTO Shipment VALUES('LKMN892NN', 2, '222 Wayne St.', 'Philadelphia', 'PA', '19033');
+INSERT INTO Shipment VALUES('SAMNS882M', 2, '10 Jefferson Rd.', 'Philadelphia', 'PA', '19332');
