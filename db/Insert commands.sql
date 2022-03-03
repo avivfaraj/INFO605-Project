@@ -1,4 +1,5 @@
-alter session set nls_date_format='MM/DD/YYYY HH24:MI';
+ALTER SESSION SET nls_date_format='MM/DD/YYYY HH24:MI';
+
 /* **************************************
    *************** Customer *************
    **************************************
@@ -34,7 +35,7 @@ INSERT INTO Customer (fName, mName, lName, phone, email, street, city, state, zi
     VALUES('Thomas','Richard','Oppenheim',7232042433,'oppentom@gmail.com','423 Traders St.','Cleveland','OH','12045');
 
 -- Sanity Check
-SELECT * FROM Customer;
+--SELECT * FROM Customer;
 
 
 /* **************************************
@@ -68,7 +69,7 @@ INSERT ALL
 SELECT * FROM DUAL;
 
 -- Sanity Check
-SELECT * FROM Payment;
+--SELECT * FROM Payment;
 
 
 /* **************************************
@@ -80,57 +81,66 @@ SELECT * FROM Payment;
 INSERT INTO Product (productName, productDescription, productQuantity, productPrice, productSection, productColor, productCollection, productCategory) 
     VALUES('Cold Gear Infared Hoodie', 'Athleisure', 25, 34.60, 'Men', 'Black', NULL, 'Basketball'); 
 
-INSERT INTO TOP VALUES((SELECT MAX(productID) FROM Product),'Regular','S','Long Sleeve');
-
-    
-
 INSERT INTO Product (productName, productDescription, productQuantity, productPrice, productSection, productColor, productCollection, productCategory) 
     VALUES('Rush Seamless Sleeveless', 'Training', 15, 60.00, 'Men', 'Grey', 'Project Rock', 'Special Collection'); 
-
-INSERT INTO TOP VALUES((SELECT MAX(productID) FROM Product),'Regular','M','Sleeveless');
-    
 
 INSERT INTO Product (productName, productDescription, productQuantity, productPrice, productSection, productColor, productCollection, productCategory) 
     VALUES('Rush Smart Form Long Shorts', 'Training', 29, 70.00, 'Men', 'camo green', 'Project Rock', 'Special Collection'); 
 
-INSERT INTO Bottom VALUES((SELECT MAX(productID) FROM Product),'Regular','M','Shorts');
-
-
 INSERT INTO Product (productName, productDescription, productQuantity, productPrice, productSection, productColor, productCollection, productCategory) 
     VALUES('Tribase Reign 4 Pro Shoes', 'Athleisure', 58, 140.00, 'Men', 'lime green', 'Reign 4', 'Special Collection'); 
-
-INSERT INTO Shoes VALUES((SELECT MAX(productID) FROM Product),9,10);
-    
+ 
 INSERT INTO Product (productName, productDescription, productQuantity, productPrice, productSection, productColor, productCollection, productCategory) 
     VALUES('Tech V-neck', 'Training', 81, 24.99, 'Women', 'Maroon', NULL, 'Women Training'); 
-
-INSERT INTO Top VALUES((SELECT MAX(productID) FROM Product),'Tall','M', 'Long Sleeve');
-
 
 INSERT INTO Product (productName, productDescription, productQuantity, productPrice, productSection, productColor, productCollection, productCategory) 
     VALUES('Meridian Crop', 'Training', 35, 65.00, 'Women', 'Rose', 'Meridian', 'Women Training'); 
 
-INSERT INTO Top VALUES((SELECT MAX(productID) FROM Product),'Tall','L', 'Long Sleeve');
-
-
 INSERT INTO Product (productName, productDescription, productQuantity, productPrice, productSection, productColor, productCollection, productCategory) 
     VALUES('Meridian Joggers', 'Training', 55, 75.00, 'Women', 'Black', 'Meridian', 'Women Training'); 
-
-INSERT INTO Bottom VALUES((SELECT MAX(productID) FROM Product),'Tall','M', 'Leggings');
-
-
 
 INSERT INTO Product (productName, productDescription, productQuantity, productPrice, productSection, productColor, productCollection, productCategory) 
     VALUES('Meridian Leggings', 'Training', 70, 40.00, 'Women', 'Khaki', 'UA Meridian', 'Women Training'); 
 
-INSERT INTO Bottom VALUES((SELECT MAX(productID) FROM Product),'Regular','M', 'Leggings');
-
-
-
 INSERT INTO Product (productName, productDescription, productQuantity, productPrice, productSection, productColor, productCollection, productCategory) 
     VALUES('Rush Warm Up Hoodie', 'Athleisure', 45, 44.50, 'Men', 'Grey', NULL, 'Basketball'); 
 
-INSERT INTO Top VALUES((SELECT MAX(productID) FROM Product),'Tall','M', 'Long Sleeve');
+INSERT INTO Product (productName, productDescription, productQuantity, productPrice, productSection, productColor, productCollection, productCategory) 
+    VALUES('Nike Air Max 97', 'Shoes built for runners', 100, 44.50, 'Women', 'Grey', NULL, 'Running'); 
+
+INSERT INTO Product (productName, productDescription, productQuantity, productPrice, productSection, productColor, productCollection, productCategory) 
+    VALUES('Nike Air Max 97', 'Shoes built for runners', 100, 44.50, 'Women', 'Yellow', NULL, 'Running'); 
+
+INSERT INTO Product (productName, productDescription, productQuantity, productPrice, productSection, productColor, productCollection, productCategory) 
+    VALUES('Nike Air Max 79', 'Shoes built for runners', 100, 44.50, 'Men', 'Shiny Grey', NULL, 'Running'); 
+
+
+
+
+/* **************************************
+   ************* Subclasses *************
+   **************************************
+*/
+
+-- TOP
+INSERT INTO Top VALUES(1,'Regular','S','Long Sleeve');
+INSERT INTO Top VALUES(2,'Regular','M','Sleeveless');
+INSERT INTO Top VALUES(5,'Tall','M', 'Long Sleeve');
+INSERT INTO Top VALUES(6,'Tall','L', 'Long Sleeve');
+INSERT INTO Top VALUES(9,'Tall','M', 'Long Sleeve');
+
+-- Bottom
+INSERT INTO Bottom VALUES(3,'Regular','M','Shorts');
+INSERT INTO Bottom VALUES(7,'Tall','M', 'Leggings');
+INSERT INTO Bottom VALUES(8,'Regular','M', 'Leggings');
+
+-- Shoes
+INSERT INTO Shoes VALUES(4,9,42);
+INSERT INTO Shoes VALUES(10,8.5,41.5);
+INSERT INTO Shoes VALUES(11,9,42);
+INSERT INTO Shoes VALUES(12,10,43.5);
+
+
 
 
 -- Sanity Check
@@ -148,45 +158,18 @@ INSERT INTO Top VALUES((SELECT MAX(productID) FROM Product),'Tall','M', 'Long Sl
 
 -- Probably will change the way we insert Subtotal!
 
--- *************** Cart #1 ****************
--- Creating Cart with 0,0 (subtotal and tax)
-INSERT INTO Cart(cartSubtotal, cartTax, customerID) VALUES(0,0,1);
+INSERT INTO Cart(customerID, productID, quantity) VALUES (1, 1, 2);
+INSERT INTO Cart(customerID, productID, quantity) VALUES (1, 3, 1);
+INSERT INTO Cart(customerID, productID, quantity) VALUES (1, 6, 4);
+INSERT INTO Cart(customerID, productID, quantity) VALUES (2, 8, 2);
+INSERT INTO Cart(customerID, productID, quantity) VALUES (2, 8, 2);
+INSERT INTO Cart(customerID, productID, quantity) VALUES (4, 3, 2);
+INSERT INTO Cart(customerID, productID, quantity) VALUES (4, 2, 1);
+INSERT INTO Cart(customerID, productID, quantity) VALUES (5, 1, 1);
 
--- Inserting items to this cart
-INSERT INTO cartLineItem VALUES(1, 1, 2);
-INSERT INTO cartLineItem VALUES(1, 6, 3);
-
--- Updating cart's subtotal and tax according to item's prices and quantity
-UPDATE Cart
-SET (cartSubtotal, cartTax) = (SELECT SUM(cli.quantity * p.productPrice), SUM(cli.quantity * p.productPrice)*0.05
-                    FROM cartLineItem cli, Product p
-                    WHERE cli.productID = p.productID AND cli.cartID = 1)
-WHERE cartID = 1;
-                
-
--- *************** Cart #2 ****************
--- Creating Cart with 0,0 (subtotal and tax)
-INSERT INTO Cart(cartSubtotal, cartTax, customerID) VALUES(0,5,2);
-
--- Inserting items to this cart
-INSERT INTO cartLineItem VALUES(2, 5, 2);
-INSERT INTO cartLineItem VALUES(2, 2, 1);
-
--- Updating cart's subtotal according to item's prices and quantity
-UPDATE Cart
-SET (cartSubtotal, cartTax) = (SELECT SUM(cli.quantity * p.productPrice), SUM(cli.quantity * p.productPrice)*0.05
-                    FROM cartLineItem cli, Product p
-                    WHERE cli.productID = p.productID AND cli.cartID = 2)
-WHERE cartID = 2;
-
-
-
--- The same process we will use for orders
 
 -- Sanity Check
-COLUMN CART.CARTSUBTOTAL FORMAT $9999.99
-SELECT * FROM cart;
-SELECT * FROM cartLineItem;
+--SELECT * FROM Cart;
 
 
 /* **************************************
@@ -194,58 +177,86 @@ SELECT * FROM cartLineItem;
    **************************************
 */
 
-/**** ORDER #1 ******/
--- Creating temporary order with 0 
-INSERT INTO Orders(orderSubtotal, orderTax,shippingCost, orderTimestamp, customerID, paymentID) 
-            VALUES(0,0,5,TO_DATE( '12/04/2019 10:45', 'MM/DD/YYYY HH24:MI'), 1, 118214);
+-- Order #1
+INSERT INTO Orders(shippingCost, orderTimestamp, customerID, paymentID) 
+    VALUES(5,TO_DATE( '12/04/2020 10:45', 'MM/DD/YYYY HH24:MI'), 1, 118214);
 
--- Inserting to LineItem
-INSERT INTO lineItem VALUES(1, 1, 2, 0,2);
+-- Order #2
+INSERT INTO Orders(shippingCost, orderTimestamp, customerID, paymentID) 
+VALUES(5,TO_DATE( '01/01/2021 13:00', 'MM/DD/YYYY HH24:MI'), 2, 218751);
 
-UPDATE Orders
-SET (orderSubtotal, orderTax) = (SELECT SUM(li.quantity * p.productPrice), SUM(li.quantity * p.productPrice)*0.05
-                    FROM lineitem li, Product p
-                    WHERE li.productID = p.productID AND li.orderID = 1)
-WHERE orderID = 1;
+-- Order #3
+INSERT INTO Orders(shippingCost, orderTimestamp, customerID, paymentID) 
+VALUES(5,TO_DATE( '01/01/2021 13:30', 'MM/DD/YYYY HH24:MI'), 3, 327510);
 
+-- Order #4
+INSERT INTO Orders(shippingCost, orderTimestamp, customerID, paymentID) 
+VALUES(5,TO_DATE( '01/01/2021 13:40', 'MM/DD/YYYY HH24:MI'), 4, 421826);
 
-/**** ORDER #2 ******/
--- Creating temporary order with 0 
-INSERT INTO Orders(orderSubtotal, orderTax,shippingCost,orderTimestamp, customerID, paymentID) 
-            VALUES(0,0,5,TO_DATE( '12/04/2019 13:45', 'MM/DD/YYYY HH24:MI'), 1, 118214);
+-- Order #5
+INSERT INTO Orders(shippingCost, orderTimestamp, customerID, paymentID) 
+VALUES(5,TO_DATE( '01/01/2021 13:50', 'MM/DD/YYYY HH24:MI'), 5, 110142);
 
--- Inserting to LineItem
-INSERT INTO lineItem VALUES(1, 2, 1, 0,5);
-INSERT INTO lineItem VALUES(2, 2, 1, 0,8);
+-- Order #6
+INSERT INTO Orders(shippingCost, orderTimestamp, customerID, paymentID) 
+VALUES(5,TO_DATE( '02/01/2021 09:40', 'MM/DD/YYYY HH24:MI'), 3, 327510);
 
+-- Order #7
+INSERT INTO Orders(shippingCost, orderTimestamp, customerID, paymentID) 
+VALUES(5,TO_DATE( '02/01/2021 13:40', 'MM/DD/YYYY HH24:MI'), 2, 218751);
 
-UPDATE Orders
-SET (orderSubtotal, orderTax) = (SELECT SUM(li.quantity * p.productPrice), SUM(li.quantity * p.productPrice)*0.05
-                    FROM lineitem li, Product p
-                    WHERE li.productID = p.productID AND li.orderID = 2)
-WHERE orderID = 2;
+-- Order #8
+INSERT INTO Orders(shippingCost, orderTimestamp, customerID, paymentID) 
+VALUES(5,TO_DATE( '03/01/2021 15:25', 'MM/DD/YYYY HH24:MI'), 8, 114914);
 
-
-
-/**** ORDER #3 ******/
--- Creating temporary order with 0 
-INSERT INTO Orders(orderSubtotal, orderTax,shippingCost,orderTimestamp, customerID, paymentID) 
-            VALUES(0,0,5,TO_DATE( '01/01/2020 13:00', 'MM/DD/YYYY HH24:MI'), 2, 218751);
-
--- Inserting to LineItem
-INSERT INTO lineItem VALUES(1, 3, 1, 0,2);
-INSERT INTO lineItem VALUES(2, 3, 3, 0,3);
-
-
-UPDATE Orders
-SET (orderSubtotal, orderTax) = (SELECT SUM(li.quantity * p.productPrice), SUM(li.quantity * p.productPrice)*0.05
-                    FROM lineitem li, Product p
-                    WHERE li.productID = p.productID AND li.orderID = 3)
-WHERE orderID = 3;
+-- Order #9
+INSERT INTO Orders(shippingCost, orderTimestamp, customerID, paymentID) 
+VALUES(5,TO_DATE( '03/01/2021 18:00', 'MM/DD/YYYY HH24:MI'), 7, 413152);
 
 -- Sanity Check
-SELECT * FROM orders;
-SELECT * FROM lineItem;
+--SELECT * FROM Orders;
+
+
+
+/* **************************************
+   ************** LineItem **************
+   **************************************
+*/
+-- orderID = 1
+INSERT INTO lineItem VALUES(1, 1, 2, 0,2);
+INSERT INTO lineItem VALUES(2, 1, 1, 5,4);
+
+-- orderID = 2
+INSERT INTO lineItem VALUES(1, 2, 2, 0,7);
+INSERT INTO lineItem VALUES(2, 2, 3, 5,4);
+
+-- orderID = 3
+INSERT INTO lineItem VALUES(1, 3, 1, 0,5);
+
+-- orderID = 4
+INSERT INTO lineItem VALUES(1, 4, 6, 5,4);
+
+-- orderID = 5
+INSERT INTO lineItem VALUES(1, 5, 2, 0,6);
+INSERT INTO lineItem VALUES(2, 5, 1, 0,3);
+
+-- orderID = 6
+INSERT INTO lineItem VALUES(1, 6, 1, 0,7);
+INSERT INTO lineItem VALUES(2, 6, 1, 0,9);
+
+-- orderID = 7
+INSERT INTO lineItem VALUES(1, 7, 1, 0,7);
+
+-- orderID = 8
+INSERT INTO lineItem VALUES(1, 8, 2, 0,1);
+
+-- orderID = 9
+INSERT INTO lineItem VALUES(1, 9, 1, 0,9);
+INSERT INTO lineItem VALUES(2, 9, 1, 0,3);
+INSERT INTO lineItem VALUES(3, 9, 1, 0,2);
+
+-- Sanity Check
+--SELECT * FROM lineItem;
 
 
 
@@ -253,6 +264,34 @@ SELECT * FROM lineItem;
    ************** Shipment **************
    **************************************
 */
-INSERT INTO Shipment VALUES('A7FV4NS0', 1, '222 Wayne St.', 'Philadelphia', 'PA', '19033');
-INSERT INTO Shipment VALUES('LKMN892NN', 2, '222 Wayne St.', 'Philadelphia', 'PA', '19033');
-INSERT INTO Shipment VALUES('SAMNS882M', 2, '10 Jefferson Rd.', 'Philadelphia', 'PA', '19332');
+INSERT INTO Shipment VALUES('A7FV4NS0', 1, '222 Wayne St.', 'Philadelphia', 'PA', '19033', 'FedEx');
+INSERT INTO Shipment VALUES('SAMNS882M', 2, '10 Jefferson Rd.', 'Philadelphia', 'PA', '19332','UPS');
+INSERT INTO Shipment VALUES('LKMN892NN', 3, '56 Brooks Rd.', 'Brooklyn', 'NY', '11345','UPS');
+INSERT INTO Shipment VALUES('LMKSN02', 4, '23 Dover Ln.', 'Philadelphia', 'PA', '19041','FedEx');
+INSERT INTO Shipment VALUES('ALPMMWEX', 5, '22 Walter Dr.', 'Tamp', 'FL', '33621','UPS');
+INSERT INTO Shipment VALUES('LPIIEMM2', 6, '56 Brooks Rd.', 'Brooklyn', 'NY', '11345','UPS');
+INSERT INTO Shipment VALUES('SAMNS882M', 7, '10 Jefferson Rd.', 'Philadelphia', 'PA', '19332','UPS');
+INSERT INTO Shipment VALUES('SAMNS882M', 8, '410 Aurora St.', 'Austin', 'TX', '33123','FedEx');
+
+-- Sanity Check
+--SELECT * FROM Shipment;
+
+
+
+/* **************************************
+   ************** Returns ***************
+   **************************************
+*/
+
+INSERT INTO Returns (orderID, productID, returnDate, quantity)
+VALUES(1,2, TO_DATE( '12/10/2020 10:00', 'MM/DD/YYYY HH24:MI'), 1);
+
+INSERT INTO Returns (orderID, productID, returnDate, quantity)
+VALUES(2,4, TO_DATE( '03/01/2021 10:00', 'MM/DD/YYYY HH24:MI'), 2);
+
+INSERT INTO Returns (orderID, productID, returnDate, quantity)
+VALUES(8,1, TO_DATE( '05/01/2021 10:00', 'MM/DD/YYYY HH24:MI'), 1);
+
+
+-- Sanity Check
+--SELECT * FROM RETURNs;
