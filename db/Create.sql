@@ -49,9 +49,7 @@ CONSTRAINT product_pk PRIMARY KEY (productID));
 --DROP TABLE Orders CASCADE CONSTRAINTS; 
 CREATE TABLE Orders(
 orderID                  NUMBER
-GENERATED ALWAYS AS IDENTITY START WITH 1 INCREMENT BY 1,  
---orderSubtotal            NUMBER(6,2), 
---orderTax                 NUMBER(6,2),
+GENERATED ALWAYS AS IDENTITY START WITH 1 INCREMENT BY 1,
 shippingCost             NUMBER(6,2),
 orderTimestamp           DATE,  
 customerID               NUMBER(10)  NOT NULL,
