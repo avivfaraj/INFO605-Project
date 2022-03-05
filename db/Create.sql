@@ -3,10 +3,10 @@
    **************************************
 */
 
+-- Removed AUTO_INCREMENT 
 --DROP TABLE Customer CASCADE CONSTRAINTS; 
 CREATE TABLE Customer (
-customerID             NUMBER(10)
-GENERATED ALWAYS AS IDENTITY START WITH 1 INCREMENT BY 1,  
+customerID             NUMBER(10) NOT NULL,  
 fName                  VARCHAR2(20)  NOT NULL, 
 mName                  VARCHAR2(20), 
 lName                  VARCHAR2(20)  NOT NULL, 
@@ -29,11 +29,10 @@ paymentCompany          VARCHAR2(16) NOT NULL,
 CHECK (paymentCompany in ('Visa','AMEX', 'Mastercard', 'Bank of America', 'Capital One')),
 CONSTRAINT payment_pk PRIMARY KEY (paymentID));
 
-
+-- Removed AUTO_INCREMENT
 --DROP TABLE Product CASCADE CONSTRAINTS; 
 CREATE TABLE Product(
-productID                NUMBER(10)
-GENERATED ALWAYS AS IDENTITY START WITH 1 INCREMENT BY 1, 
+productID                NUMBER(10) NOT NULL, 
 productName              VARCHAR2(50) NOT NULL, 
 productDescription       VARCHAR2(50), 
 productQuantity          NUMBER(3)    NOT NULL, 
@@ -46,10 +45,10 @@ productCategory          VARCHAR2(30) NOT NULL,
 CONSTRAINT product_pk PRIMARY KEY (productID));
 
 
+-- Removed AUTO INCREMENT
 --DROP TABLE Orders CASCADE CONSTRAINTS; 
 CREATE TABLE Orders(
-orderID                  NUMBER
-GENERATED ALWAYS AS IDENTITY START WITH 1 INCREMENT BY 1,
+orderID                  NUMBER NOT NULL,
 shippingCost             NUMBER(6,2),
 orderTimestamp           DATE,  
 customerID               NUMBER(10)  NOT NULL,
