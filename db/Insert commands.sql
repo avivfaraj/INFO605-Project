@@ -193,8 +193,8 @@ INSERT ALL
     INTO Shipment VALUES('LMKSN02', 4, '23 Dover Ln.', 'Philadelphia', 'PA', '19041','FedEx')
     INTO Shipment VALUES('ALPMMWEX', 5, '22 Walter Dr.', 'Tamp', 'FL', '33621','UPS')
     INTO Shipment VALUES('LPIIEMM2', 6, '56 Brooks Rd.', 'Brooklyn', 'NY', '11345','UPS')
-    INTO Shipment VALUES('SAMNS882M', 7, '10 Jefferson Rd.', 'Philadelphia', 'PA', '19332','UPS')
-    INTO Shipment VALUES('SAMNS882M', 8, '410 Aurora St.', 'Austin', 'TX', '33123','FedEx')
+    INTO Shipment VALUES('PLSDMNUA8', 7, '10 Jefferson Rd.', 'Philadelphia', 'PA', '19332','UPS')
+    INTO Shipment VALUES('LMNOPASDC', 8, '410 Aurora St.', 'Austin', 'TX', '33123','FedEx')
 SELECT * FROM DUAL;
 
 -- Sanity check
