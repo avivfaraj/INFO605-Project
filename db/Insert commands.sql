@@ -213,3 +213,6 @@ SELECT * FROM DUAL;
 
 -- Sanity Check
 -- SELECT * FROM RETURNs;
+
+
+COMMIT;
