@@ -80,7 +80,7 @@ CONSTRAINT shipmemt_fk FOREIGN KEY (orderID) REFERENCES Orders (orderID) ON DELE
 CREATE TABLE LineItem (
 line#           NUMBER(2)  NOT NULL, 
 orderID         NUMBER(10) NOT NULL, 
-quantity        NUMBER(1),
+quantity        NUMBER(1)  DEFAULT 1 NOT NULL,
 discount        NUMBER(6,2) NOT NULL,
 productID       NUMBER(10)  NOT NULL, 
 CONSTRAINT lineItem_pk PRIMARY KEY (line#, orderID), 
