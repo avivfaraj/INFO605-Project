@@ -48,7 +48,7 @@ CONSTRAINT product_pk PRIMARY KEY (productID));
 -- Removed AUTO INCREMENT
 --DROP TABLE Orders CASCADE CONSTRAINTS; 
 CREATE TABLE Orders(
-orderID                  NUMBER NOT NULL,
+orderID                  NUMBER(10) NOT NULL,
 shippingCost             NUMBER(6,2),
 orderTimestamp           DATE,  
 customerID               NUMBER(10)  NOT NULL,
