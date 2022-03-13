@@ -7,9 +7,15 @@ In this project, we developed and implemented a database system for an online re
 ## Relational Model
 [Referential Integrity](https://github.com/avivfaraj/INFO605-Project/blob/main/RI/Final%20Referential%20Integrity%20Diagram.png)
 
+[Relation Schema](https://github.com/avivfaraj/INFO605-Project/blob/main/Relational%20Model/Relational%20Schema.docx)
+
+[Data Dictionary](https://github.com/avivfaraj/INFO605-Project/blob/main/Relational%20Model/Data%20Dictionary.docx)
+
 
 ## Implementation
 [Create Commands](https://github.com/avivfaraj/INFO605-Project/blob/main/db/Create.sql)
+
 [Insert Commands](https://github.com/avivfaraj/INFO605-Project/blob/main/db/Insert%20commands.sql)
+
 [Formatting Commands](https://github.com/avivfaraj/INFO605-Project/blob/main/db/Formatting%20commands.sql)
 
