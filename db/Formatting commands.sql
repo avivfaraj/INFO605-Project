@@ -51,3 +51,9 @@ COLUMN ProductColor HEADING 'Color' FORMAT A12
 COLUMN productCollection HEADING 'Collection' FORMAT A12
 COLUMN productCategory HEADING 'Category' FORMAT A18
 COLUMN discount HEADING 'Discount' FORMAT $99,999.99
+
+
+COLUMN Subtotal HEADING 'Subtotal' FORMAT $9,999.99
+COLUMN Shipping HEADING 'Shipping|Cost' FORMAT $9,999.99
+COLUMN Tax HEADING 'Tax' FORMAT $9,999.99
+COLUMN "Total Discount" FORMAT $9,999.99
